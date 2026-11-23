@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRA-RKAS BOS 2027 — SMA Negeri 1 Jeunieb</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              950: '#070D19',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            gold: {
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F1F5F9;
+      color: #0F172A;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E2E8F0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748B;
+    }
+    /* Glass & Institutional Surface Effects */
+    .glass-header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .exec-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 16px -4px rgba(15, 23, 42, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .exec-card:hover {
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06), 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+    }
+    .bar-fill {
+      transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    /* Presentation Mode */
+    body.presentation-mode #sidebar {
+      transform: translateX(-100%);
+      width: 0;
+      overflow: hidden;
+      border: none;
+    }
+    body.presentation-mode #main-wrapper {
+      margin-left: 0 !important;
+    }
+    /* Print Styles */
+    @media print {
+      #sidebar, #top-header, #presenter-drawer, #floating-controls, .no-print {
+        display: none !important;
+      }
+      #main-wrapper {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      .module-section {
+        display: block !important;
+        page-break-after: always;
+        margin-bottom: 2rem;
+      }
+      body {
+        background: #FFFFFF !important;
+      }
+    }
+    /* Fade animation on module switch */
+    .fade-in-up {
+      animation: fadeInUp 0.32s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-indigo-600 selection:text-white">
+
+  <!-- Global Floating Tooltip for Charts -->
+  <div id="chart-tooltip" class="fixed z-50 pointer-events-none hidden bg-navy-900 text-white text-xs rounded-xl px-3.5 py-2.5 shadow-2xl border border-slate-700 max-w-xs transition-opacity duration-150"></div>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="mobile-backdrop" onclick="toggleMobileSidebar(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-30 hidden lg:hidden"></div>
+
+  <!-- LEFT NAVIGATION SIDEBAR -->
+  <aside id="sidebar" class="fixed top-0 left-0 z-40 h-screen w-72 bg-navy-900 text-slate-200 border-r border-slate-800 flex flex-col transition-all duration-300 -translate-x-full lg:translate-x-0">
+    <!-- Institutional Brand Header -->
+    <div class="p-5 border-b border-slate-800/90 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-navy-950 font-display font-extrabold text-lg shadow-lg shadow-amber-500/20 shrink-0">
+          S1J
+        </div>
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-amber-400">Pra-RKAS BOS 2027</div>
+          <div class="font-display font-bold text-white text-sm leading-tight">SMA Negeri 1 Jeunieb</div>
+          <div class="text-[11px] text-slate-400">Kab. Bireuen • Prov. Aceh</div>
+        </div>
+      </div>
+      <button onclick="toggleMobileSidebar(false)" class="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="Tutup Menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Quick Budget Summary Pill inside Sidebar -->
+    <div class="mx-4 mt-4 p-3.5 rounded-xl bg-slate-800/70 border border-slate-700/70">
+      <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+        <span>Pagu BOS TA 2027</span>
+        <span class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-semibold">Final Revisi</span>
+      </div>
+      <div class="font-display font-extrabold text-base text-white tracking-tight">Rp242.720.000</div>
+      <div class="mt-2 w-full bg-slate-700 rounded-full h-1.5 overflow-hidden flex">
+        <div class="bg-emerald-400 h-full" style="width: 72.67%" title="Teridentifikasi: 72,67%"></div>
+        <div class="bg-amber-400 h-full" style="width: 27.33%" title="Belum Teridentifikasi: 27,33%"></div>
+      </div>
+      <div class="mt-1.5 flex justify-between text-[10px] text-slate-400">
+        <span>Teridentifikasi: <strong class="text-emerald-300">72,67%</strong></span>
+        <span>Sisa: <strong class="text-amber-300">27,33%</strong></span>
+      </div>
+    </div>
+
+    <!-- Navigation List (10 Modules) -->
+    <nav id="sidebar-nav" class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+      <!-- Populated dynamically via JS for active state accuracy -->
+    </nav>
+
+    <!-- Sidebar Footer Info -->
+    <div class="p-4 border-t border-slate-800 text-[11px] text-slate-400 space-y-1.5">
+      <div class="flex items-center justify-between">
+        <span>Navigasi Slide:</span>
+        <span class="font-mono text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded">← / →</span>
+      </div>
+      <div class="text-[10px] text-slate-500 leading-snug">
+        Dokumen Eksekutif Rapat Koordinasi Cabang Dinas Pendidikan Wil. Kab. Bireuen.
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT WRAPPER -->
+  <div id="main-wrapper" class="lg:ml-72 min-h-screen flex flex-col transition-all duration-300">
+
+    <!-- TOP EXECUTIVE HEADER BAR -->
+    <header id="top-header" class="sticky top-0 z-20 glass-header border-b border-slate-200/90 px-4 sm:px-6 lg:px-8 py-3">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleMobileSidebar(true)" class="lg:hidden p-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200" aria-label="Buka Menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="header-badge" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-navy-900 text-amber-400">
+                Modul 01 / 10
+              </span>
+              <span class="hidden sm:inline-block text-xs text-slate-400">•</span>
+              <span class="hidden sm:inline-block text-xs font-medium text-slate-500">Tahun Anggaran 2027</span>
+            </div>
+            <h1 id="header-title" class="font-display font-bold text-slate-900 text-base sm:text-lg leading-snug mt-0.5">
+              Dashboard Eksekutif Utama
+            </h1>
+          </div>
+        </div>
+
+        <!-- Executive Controls -->
+        <div class="flex items-center gap-2">
+          <!-- Slide Prev / Next -->
+          <div class="hidden sm:flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200">
+            <button onclick="navigateSlide(-1)" id="btn-prev" class="p-1.5 rounded-lg text-slate-600 hover:bg-white hover:text-slate-900 disabled:opacity-40 transition" title="Modul Sebelumnya (Panah Kiri)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <span id="slide-counter" class="px-2.5 text-xs font-semibold text-slate-700">1 / 10</span>
+            <button onclick="navigateSlide(1)" id="btn-next" class="p-1.5 rounded-lg text-slate-600 hover:bg-white hover:text-slate-900 disabled:opacity-40 transition" title="Modul Berikutnya (Panah Kanan)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <!-- Presenter Notes Toggle -->
+          <button onclick="togglePresenterNotes()" id="btn-notes" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition">
+            <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="hidden md:inline">Catatan Presenter</span>
+          </button>
+
+          <!-- Presentation Mode Toggle -->
+          <button onclick="togglePresentationMode()" id="btn-present" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-navy-900 text-white hover:bg-navy-800 transition shadow-xs">
+            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+            <span class="hidden md:inline" id="present-label">Mode Presentasi</span>
+          </button>
+
+          <!-- Print / Export PDF Button -->
+          <button onclick="window.print()" class="p-2 rounded-xl text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 hover:text-slate-900 transition" title="Cetak / Simpan PDF Eksekutif">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN VIEWPORT AREA -->
+    <main class="flex-1 px-4 sm:px-6 lg:px-8 py-6 max-w-7xl w-full mx-auto">
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 1: DASHBOARD EKSEKUTIF UTAMA                                    -->
+      <!-- ===================================================================== -->
+      <section id="module-1" class="module-section space-y-6 fade-in-up">
+        <!-- Executive Hero Banner -->
+        <div class="rounded-2xl bg-gradient-to-br from-navy-950 via-navy-900 to-slate-800 text-white p-6 sm:p-8 shadow-xl border border-slate-800 relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-72 h-72 rounded-full bg-amber-500/10 blur-2xl pointer-events-none"></div>
+          <div class="absolute right-24 -bottom-20 w-64 h-64 rounded-full bg-indigo-500/10 blur-2xl pointer-events-none"></div>
+          
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div class="space-y-3 max-w-3xl">
+              <div class="inline-flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                  Dokumen Perencanaan Pra-RKAS 2027
+                </span>
+                <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                  Kabupaten Bireuen • Provinsi Aceh
+                </span>
+              </div>
+              <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+                SMA Negeri 1 Jeunieb
+              </h2>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Penyusunan Rencana Kegiatan dan Anggaran Sekolah (Pra-RKAS) Dana Bantuan Operasional Sekolah (BOS) Tahun Anggaran 2027 berbasis evaluasi <strong class="text-white">Rapor Pendidikan 2025</strong> dan kerangka <strong class="text-amber-300">Identifikasi – Refleksi – Benahi (IRB)</strong>.
+              </p>
+              <!-- Mandatory Core Message Callout -->
+              <div class="mt-3 p-4 rounded-xl bg-white/5 border-l-4 border-amber-400 backdrop-blur-xs">
+                <p class="text-xs sm:text-sm italic text-amber-100 leading-relaxed font-medium">
+                  “Perencanaan Dana BOS yang baik bukan hanya tentang ketepatan alokasi anggaran, tetapi tentang bagaimana setiap program menjawab kebutuhan nyata sekolah dan memberikan dampak terhadap peningkatan mutu pendidikan.”
+                </p>
+              </div>
+            </div>
+
+            <!-- Institutional Quick Metrics Box -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 shrink-0 lg:w-80">
+              <div class="p-3.5 rounded-xl bg-white/8 border border-white/10">
+                <div class="text-[11px] text-slate-400 uppercase tracking-wider">Peserta Didik</div>
+                <div class="font-display text-2xl font-extrabold text-white mt-0.5">151</div>
+                <div class="text-[11px] text-emerald-300">Siswa Aktif</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white/8 border border-white/10">
+                <div class="text-[11px] text-slate-400 uppercase tracking-wider">Rombel</div>
+                <div class="font-display text-2xl font-extrabold text-white mt-0.5">6</div>
+                <div class="text-[11px] text-slate-300">Kelas Belajar</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white/8 border border-white/10">
+                <div class="text-[11px] text-slate-400 uppercase tracking-wider">Guru & Tendik</div>
+                <div class="font-display text-2xl font-extrabold text-amber-400 mt-0.5">33</div>
+                <div class="text-[11px] text-slate-300">21 Guru • 12 Tendik</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white/8 border border-white/10">
+                <div class="text-[11px] text-slate-400 uppercase tracking-wider">Status Audit</div>
+                <div class="font-display text-base font-bold text-emerald-400 mt-1">Rekonsiliasi</div>
+                <div class="text-[11px] text-slate-300">8 SNP = 11 Komp.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Primary Financial KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- KPI 1: Total Pagu -->
+          <div class="exec-card rounded-2xl p-5 border-t-4 border-t-navy-900">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Pagu Dana BOS TA 2027</span>
+                <div class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1.5">Rp242.720.000</div>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center font-bold text-xs">
+                100%
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              Pagu resmi keseluruhan satuan pendidikan berdasarkan basis data <strong>151 peserta didik</strong> SMA Negeri 1 Jeunieb.
+            </p>
+          </div>
+
+          <!-- KPI 2: Total Alokasi Teridentifikasi -->
+          <div class="exec-card rounded-2xl p-5 border-t-4 border-t-emerald-600">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700">Alokasi Teridentifikasi (Rinci)</span>
+                <div class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-700 mt-1.5">Rp176.380.000</div>
+              </div>
+              <div class="px-2.5 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold text-xs">
+                72,67%
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              Terdistribusi konsisten (selisih <strong>Rp0</strong>) pada <strong>10 Komponen BOS</strong> serta <strong>8 Standar Nasional Pendidikan</strong>.
+            </p>
+          </div>
+
+          <!-- KPI 3: Sisa Pagu Belum Teridentifikasi -->
+          <div class="exec-card rounded-2xl p-5 border-t-4 border-t-amber-500">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-amber-700">Sisa Pagu Belum Teridentifikasi</span>
+                <div class="font-display text-2xl sm:text-3xl font-extrabold text-amber-600 mt-1.5">Rp66.340.000</div>
+              </div>
+              <div class="px-2.5 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 font-bold text-xs">
+                27,33%
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+              <strong>Sisa Pagu yang Belum Teridentifikasi dalam Rincian Anggaran</strong> — memerlukan verifikasi dan rekonsiliasi tim BOS.
+            </p>
+          </div>
+        </div>
+
+        <!-- Rapor Pendidikan 2025 Executive Summary Strip -->
+        <div class="exec-card rounded-2xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+            <div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Ikhtisar Indikator Rapor Pendidikan 2025 (Landasan Perencanaan)</h3>
+              <p class="text-xs text-slate-500">Capaian mutu satuan pendidikan sebagai acuan penetapan prioritas kegiatan Pra-RKAS 2027</p>
+            </div>
+            <button onclick="selectModule(3)" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 inline-flex items-center gap-1 self-start sm:self-auto">
+              Lihat Analisis Rapor Lengkap →
+            </button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+            <div class="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/80 flex items-start justify-between gap-3">
+              <div>
+                <div class="text-xs font-bold text-amber-900">Kemampuan Literasi</div>
+                <div class="text-[11px] text-amber-800 mt-0.5">Kategori <strong>Sedang</strong> • Mengalami penurunan dibanding 2024</div>
+                <span class="inline-block mt-2 px-2 py-0.5 rounded bg-amber-200/70 text-amber-950 text-[10px] font-bold">PRIORITAS UTAMA PEMBENAHAN</span>
+              </div>
+              <span class="text-amber-600 font-display font-extrabold text-sm">↓ Turun</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80 flex items-start justify-between gap-3">
+              <div>
+                <div class="text-xs font-bold text-emerald-900">Kualitas Pembelajaran</div>
+                <div class="text-[11px] text-emerald-800 mt-0.5">Kategori <strong>Baik</strong> • Capaian tertinggi & meningkat positif</div>
+                <span class="inline-block mt-2 px-2 py-0.5 rounded bg-emerald-200/70 text-emerald-950 text-[10px] font-bold">KEKUATAN UTAMA SEKOLAH</span>
+              </div>
+              <span class="text-emerald-600 font-display font-extrabold text-sm">↑ Naik</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-3">
+              <div>
+                <div class="text-xs font-bold text-slate-900">Iklim Keamanan & Karakter</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">Kategori <strong>Baik</strong> • Kondusivitas lingkungan belajar terjaga</div>
+                <span class="inline-block mt-2 px-2 py-0.5 rounded bg-slate-200 text-slate-800 text-[10px] font-bold">PERTAHANKAN & TINGKATKAN</span>
+              </div>
+              <span class="text-indigo-600 font-display font-extrabold text-sm">✓ Baik</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TWO SEPARATE FINANCIAL VISUALIZATIONS SIDE-BY-SIDE (MANDATORY REQUIREMENT 6) -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <!-- Visualization A: 8 Standar Nasional Pendidikan -->
+          <div class="exec-card rounded-2xl p-5 flex flex-col">
+            <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600">Visualisasi A • Klasifikasi SNP</span>
+                <h3 class="font-display font-bold text-slate-900 text-base mt-0.5">Distribusi Anggaran Berdasarkan 8 Standar Nasional Pendidikan</h3>
+              </div>
+              <button onclick="selectModule(7)" class="text-xs font-semibold text-indigo-600 hover:underline shrink-0">Detail 8 SNP →</button>
+            </div>
+            <div id="dash-chart-snp" class="mt-4 space-y-2.5 flex-1"></div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-500">Total Teridentifikasi (8 SNP):</span>
+              <span class="font-display font-extrabold text-slate-900">Rp176.380.000 <span class="text-emerald-600 font-semibold">(72,67% Pagu)</span></span>
+            </div>
+          </div>
+
+          <!-- Visualization B: 11 Komponen Penggunaan Dana BOS -->
+          <div class="exec-card rounded-2xl p-5 flex flex-col">
+            <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Visualisasi B • Klasifikasi Juknis BOS</span>
+                <h3 class="font-display font-bold text-slate-900 text-base mt-0.5">Distribusi Anggaran Berdasarkan 11 Komponen Penggunaan Dana BOS</h3>
+              </div>
+              <button onclick="selectModule(6)" class="text-xs font-semibold text-emerald-600 hover:underline shrink-0">Detail 11 Komponen →</button>
+            </div>
+            <div id="dash-chart-komp" class="mt-4 space-y-2.5 flex-1"></div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-500">Total Komponen 1–10 (Komp. 11 Belum Diisi):</span>
+              <span class="font-display font-extrabold text-slate-900">Rp176.380.000 <span class="text-emerald-600 font-semibold">(72,67% Pagu)</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mandatory Reconciliation Banner on Dashboard -->
+        <div class="rounded-2xl bg-amber-50 border border-amber-300 p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-amber-800">Catatan Rekonsiliasi Anggaran (Wajib Verifikasi)</div>
+              <p class="text-xs sm:text-sm text-amber-950 font-medium mt-1 leading-relaxed">
+                “Total alokasi berdasarkan 8 Standar Nasional Pendidikan dan 11 Komponen Penggunaan Dana BOS telah menunjukkan kesesuaian sebesar <strong>Rp176.380.000</strong>. Namun, masih terdapat selisih <strong>Rp66.340.000</strong> terhadap total pagu yang memerlukan penelusuran dan rekonsiliasi lebih lanjut.”
+              </p>
+            </div>
+          </div>
+          <button onclick="selectModule(8)" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shrink-0 transition shadow-xs">
+            Buka Audit Rekonsiliasi →
+          </button>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 2: PROFIL SEKOLAH & SUMBER DAYA                                 -->
+      <!-- ===================================================================== -->
+      <section id="module-2" class="module-section hidden space-y-6 fade-in-up">
+        <div class="exec-card rounded-2xl p-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Identitas & Kapasitas Satuan Pendidikan</span>
+              <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Profil Sekolah & Sumber Daya Manusia</h2>
+              <p class="text-sm text-slate-600 mt-1">SMA Negeri 1 Jeunieb — Kecamatan Jeunieb, Kabupaten Bireuen, Provinsi Aceh</p>
+            </div>
+            <div class="px-4 py-2.5 rounded-xl bg-navy-900 text-white text-xs">
+              <div class="text-slate-400">Satuan Biaya & Pagu BOS 2027</div>
+              <div class="font-display font-bold text-base text-amber-400">Rp242.720.000 / Tahun</div>
+            </div>
+          </div>
+
+          <!-- 6 Key Resource Cards -->
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-500">Total Peserta Didik</div>
+              <div class="font-display text-3xl font-extrabold text-slate-900 mt-1">151 <span class="text-sm font-medium text-slate-500">Siswa</span></div>
+              <div class="text-xs text-slate-600 mt-2">Basis perhitungan pagu Dana BOS Reguler Tahun Anggaran 2027.</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-500">Rombongan Belajar</div>
+              <div class="font-display text-3xl font-extrabold text-indigo-700 mt-1">6 <span class="text-sm font-medium text-slate-500">Rombel</span></div>
+              <div class="text-xs text-slate-600 mt-2">Rata-rata ±25 peserta didik per rombongan belajar (ideal & kondusif).</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-semibold text-slate-500">Total Personel (PTK)</div>
+              <div class="font-display text-3xl font-extrabold text-emerald-700 mt-1">33 <span class="text-sm font-medium text-slate-500">Orang</span></div>
+              <div class="text-xs text-slate-600 mt-2">Kombinasi tenaga pendidik profesional dan staf administrasi/operasional.</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-indigo-50/60 border border-indigo-200">
+              <div class="text-xs font-semibold text-indigo-800">Tenaga Pendidik (Guru)</div>
+              <div class="font-display text-3xl font-extrabold text-indigo-900 mt-1">21 <span class="text-sm font-medium text-indigo-700">Guru</span></div>
+              <div class="text-xs text-indigo-800/80 mt-2">63,64% dari total personel sekolah; penggerak utama kualitas pembelajaran.</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-amber-50/60 border border-amber-200">
+              <div class="text-xs font-semibold text-amber-800">Tenaga Kependidikan</div>
+              <div class="font-display text-3xl font-extrabold text-amber-900 mt-1">12 <span class="text-sm font-medium text-amber-700">Tendik</span></div>
+              <div class="text-xs text-amber-800/80 mt-2">36,36% dari total personel; mendukung tata usaha, perpustakaan, dan layanan.</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+              <div class="text-xs font-semibold text-emerald-800">Rasio Guru : Siswa</div>
+              <div class="font-display text-3xl font-extrabold text-emerald-900 mt-1">1 : 7,2</div>
+              <div class="text-xs text-emerald-800/80 mt-2">Rasio pendampingan belajar sangat memadai untuk intervensi literasi personal.</div>
+            </div>
+          </div>
+
+          <!-- Resource Composition Bar & Strategic Context -->
+          <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white">
+              <h3 class="font-display font-bold text-slate-900 text-sm mb-3">Komposisi Sumber Daya Manusia (33 Personel)</h3>
+              <div class="w-full h-6 rounded-xl overflow-hidden flex text-xs font-bold text-white shadow-inner">
+                <div class="bg-indigo-600 flex items-center justify-center" style="width: 63.64%">21 Guru (63,6%)</div>
+                <div class="bg-amber-500 flex items-center justify-center" style="width: 36.36%">12 Tendik (36,4%)</div>
+              </div>
+              <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-indigo-600 mt-1.5 shrink-0"></span>
+                  <span><strong>21 Guru:</strong> Menjadi sasaran strategis penguatan kompetensi pedagogik dan literasi lintas mata pelajaran (dialokasikan Rp10.515.000 pada Pengembangan Profesi PTK).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-500 mt-1.5 shrink-0"></span>
+                  <span><strong>12 Tenaga Kependidikan:</strong> Menjamin keberlangsungan layanan administrasi sekolah, pengelolaan perpustakaan, dan operasional harian.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
+              <h3 class="font-display font-bold text-slate-900 text-sm mb-2">Implikasi Profil Sekolah terhadap Perencanaan BOS 2027</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Dengan skala <strong>151 peserta didik</strong> dan <strong>6 rombongan belajar</strong>, SMA Negeri 1 Jeunieb memiliki keunggulan berupa rentang kendali kelas yang efektif. Namun, skala jumlah siswa ini juga berimplikasi pada besaran pagu Dana BOS yang terbatas (<strong>Rp242.720.000</strong>), sehingga setiap rupiah belanja harus diprioritaskan secara presisi pada kebutuhan esensial:
+              </p>
+              <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+                <div class="p-2.5 rounded-lg bg-white border border-slate-200 font-medium text-slate-800">
+                  ✓ Pemulihan Capaian Literasi
+                </div>
+                <div class="p-2.5 rounded-lg bg-white border border-slate-200 font-medium text-slate-800">
+                  ✓ Modernisasi Multimedia Kelas
+                </div>
+                <div class="p-2.5 rounded-lg bg-white border border-slate-200 font-medium text-slate-800">
+                  ✓ Ketersediaan Daya, Jasa & Honor
+                </div>
+                <div class="p-2.5 rounded-lg bg-white border border-slate-200 font-medium text-slate-800">
+                  ✓ Pemeliharaan Sarpras Aman
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 3: ANALISIS RAPOR PENDIDIKAN 2025                               -->
+      <!-- ===================================================================== -->
+      <section id="module-3" class="module-section hidden space-y-6 fade-in-up">
+        <div class="exec-card rounded-2xl p-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Evaluasi Mutu Satuan Pendidikan</span>
+              <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Analisis Rapor Pendidikan 2025</h2>
+              <p class="text-sm text-slate-600 mt-1">Identifikasi kekuatan utama dan area prioritas pembenahan SMA Negeri 1 Jeunieb</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs">
+              <span class="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-900 font-semibold border border-amber-200">Prioritas: Kemampuan Literasi</span>
+              <span class="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-900 font-semibold border border-emerald-200">Kekuatan: Kualitas Pembelajaran</span>
+            </div>
+          </div>
+
+          <!-- Highlight Comparison: Literasi vs Kualitas Pembelajaran -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <!-- Card 1: Kemampuan Literasi -->
+            <div class="rounded-2xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-white p-6">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">PRIORITAS PEMBENAHAN UTAMA</span>
+                <span class="text-xs font-bold text-amber-800 bg-amber-200/70 px-2.5 py-1 rounded-lg">Kategori: SEDANG</span>
+              </div>
+              <h3 class="font-display text-xl font-extrabold text-slate-900 mt-4">Kemampuan Literasi Peserta Didik</h3>
+              <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                Indikator Kemampuan Literasi berada pada kategori <strong>Sedang</strong> dan <strong>mengalami penurunan dibandingkan capaian tahun 2024</strong>. Kondisi ini menjadikan penguatan budaya baca, ketersediaan bahan bacaan bermutu, dan pembelajaran berbasis literasi sebagai fokus utama intervensi Pra-RKAS 2027.
+              </p>
+              <div class="mt-4 p-3.5 rounded-xl bg-white border border-amber-200 text-xs text-slate-700 space-y-1">
+                <div class="font-bold text-amber-900">Respons Perencanaan Anggaran 2027:</div>
+                <div>• Alokasi <strong>Pengembangan Perpustakaan sebesar Rp36.770.000</strong> (15,15% dari total pagu) untuk memperkaya koleksi buku pengayaan dan layanan literasi sekolah.</div>
+                <div>• Dukungan <strong>Penyediaan Alat Multimedia Pembelajaran Rp38.780.000</strong> untuk akses literasi digital interaktif.</div>
+              </div>
+            </div>
+
+            <!-- Card 2: Kualitas Pembelajaran -->
+            <div class="rounded-2xl border-2 border-emerald-300 bg-gradient-to-br from-emerald-50 to-white p-6">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white">KEKUATAN & CAPAIAN TERTINGGI</span>
+                <span class="text-xs font-bold text-emerald-800 bg-emerald-200/70 px-2.5 py-1 rounded-lg">Kategori: BAIK</span>
+              </div>
+              <h3 class="font-display text-xl font-extrabold text-slate-900 mt-4">Kualitas Pembelajaran di Kelas</h3>
+              <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                Indikator Kualitas Pembelajaran meraih kategori <strong>Baik</strong> serta <strong>mencatat capaian tertinggi dan peningkatan positif dibandingkan tahun 2024</strong>. Manajemen kelas, dukungan psikologis, dan metode aktivasi kognitif guru terbukti berjalan efektif.
+              </p>
+              <div class="mt-4 p-3.5 rounded-xl bg-white border border-emerald-200 text-xs text-slate-700 space-y-1">
+                <div class="font-bold text-emerald-900">Strategi Keberlanjutan 2027:</div>
+                <div>• Menjaga momentum positif melalui <strong>Pengembangan Profesi PTK Rp10.515.000</strong> dan <strong>Kegiatan Pembelajaran Rp17.610.000</strong>.</div>
+                <div>• Memanfaatkan praktik baik pembelajaran di kelas untuk mendongkrak kompetensi literasi siswa.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6-Indicator Rapor Pendidikan 2025 Matrix -->
+          <div class="mt-6">
+            <h3 class="font-display font-bold text-slate-900 text-base mb-3">Peta Lengkap 6 Indikator Utama Rapor Pendidikan 2025</h3>
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-navy-900 text-white">
+                    <th class="py-3 px-4 font-semibold">Indikator Rapor Pendidikan</th>
+                    <th class="py-3 px-4 font-semibold">Label Capaian 2025</th>
+                    <th class="py-3 px-4 font-semibold">Tren vs 2024</th>
+                    <th class="py-3 px-4 font-semibold">Status Strategis Pra-RKAS 2027</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 bg-white">
+                  <tr class="bg-amber-50/50">
+                    <td class="py-3.5 px-4 font-bold text-slate-900">1. Kemampuan Literasi</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Sedang</span></td>
+                    <td class="py-3.5 px-4 font-semibold text-rose-600">↓ Mengalami Penurunan</td>
+                    <td class="py-3.5 px-4 text-slate-700"><strong>Prioritas Utama Pembenahan</strong> — Intervensi perpustakaan & literasi terintegrasi.</td>
+                  </tr>
+                  <tr class="bg-emerald-50/40">
+                    <td class="py-3.5 px-4 font-bold text-slate-900">2. Kualitas Pembelajaran</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Baik</span></td>
+                    <td class="py-3.5 px-4 font-semibold text-emerald-600">↑ Capaian Tertinggi & Naik</td>
+                    <td class="py-3.5 px-4 text-slate-700"><strong>Kekuatan Utama Sekolah</strong> — Pertahankan & replikasi praktik baik guru.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 px-4 font-semibold text-slate-900">3. Kemampuan Numerasi</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Sedang</span></td>
+                    <td class="py-3.5 px-4 font-medium text-slate-600">→ Perlu Penguatan</td>
+                    <td class="py-3.5 px-4 text-slate-700">Penguatan asesmen formatif & media pembelajaran berbasis pemecahan masalah.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 px-4 font-semibold text-slate-900">4. Karakter Peserta Didik</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Baik</span></td>
+                    <td class="py-3.5 px-4 font-medium text-emerald-600">↑ Positif</td>
+                    <td class="py-3.5 px-4 text-slate-700">Pembinaan ekstrakurikuler & penguatan profil pelajar Pancasila.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 px-4 font-semibold text-slate-900">5. Iklim Keamanan Sekolah</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Baik</span></td>
+                    <td class="py-3.5 px-4 font-medium text-emerald-600">✓ Terjaga</td>
+                    <td class="py-3.5 px-4 text-slate-700">Didukung pemeliharaan sarana & prasarana yang aman dan nyaman.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 px-4 font-semibold text-slate-900">6. Iklim Kebinekaan</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Baik</span></td>
+                    <td class="py-3.5 px-4 font-medium text-emerald-600">✓ Terjaga</td>
+                    <td class="py-3.5 px-4 text-slate-700">Harmoni warga sekolah dan inklusivitas layanan pendidikan.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Methodological Caution Note -->
+          <div class="mt-5 p-4 rounded-xl bg-slate-100 border border-slate-200 text-xs text-slate-700 leading-relaxed">
+            <strong>Catatan Metodologis Evaluasi:</strong> Alokasi anggaran pada sektor perpustakaan, multimedia, dan pelatihan guru ditetapkan sebagai <em>sasaran perencanaan strategis</em> untuk menjawab temuan Rapor Pendidikan 2025. Peningkatan skor indikator tidak diasumsikan terjadi secara otomatis hanya karena penganggaran, melainkan akan dievaluasi secara berkala melalui supervisi akademik dan asesmen internal sekolah.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 4: ANALISIS AKAR MASALAH (ROOT CAUSE ANALYSIS)                  -->
+      <!-- ===================================================================== -->
+      <section id="module-4" class="module-section hidden space-y-6 fade-in-up">
+        <div class="exec-card rounded-2xl p-6">
+          <div class="pb-5 border-b border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-600">Diagnostik Permasalahan Mutu</span>
+            <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Analisis Akar Masalah (Root Cause Analysis)</h2>
+            <p class="text-sm text-slate-600 mt-1">Menelusuri faktor penyebab penurunan Kemampuan Literasi dan kebutuhan dukungan sarana pembelajaran</p>
+          </div>
+
+          <!-- Interactive Root Cause Tabs -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-6">
+            <!-- Pilar 1 -->
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 font-display font-extrabold flex items-center justify-center text-sm mb-3">01</div>
+                <h3 class="font-display font-bold text-slate-900 text-base">Keterbatasan Sumber Bacaan & Daya Tarik Perpustakaan</h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  <strong>Akar Masalah:</strong> Rasio buku pengayaan non-teks yang relevan dengan minat remaja masih terbatas, sehingga pemanfaatan perpustakaan sebagai pusat literasi belum optimal.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <div class="text-[11px] font-bold text-emerald-700">Solusi Anggaran Pra-RKAS 2027:</div>
+                <div class="text-xs text-slate-800 font-semibold mt-0.5">Pengembangan Perpustakaan — Rp36.770.000</div>
+              </div>
+            </div>
+
+            <!-- Pilar 2 -->
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-display font-extrabold flex items-center justify-center text-sm mb-3">02</div>
+                <h3 class="font-display font-bold text-slate-900 text-base">Kebutuhan Modernisasi Perangkat Multimedia Pembelajaran</h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  <strong>Akar Masalah:</strong> Guru memiliki kualitas pembelajaran yang baik, namun membutuhkan dukungan perangkat multimedia interaktif untuk menyajikan teks multimodal dan literasi digital di kelas.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <div class="text-[11px] font-bold text-emerald-700">Solusi Anggaran Pra-RKAS 2027:</div>
+                <div class="text-xs text-slate-800 font-semibold mt-0.5">Penyediaan Alat Multimedia Pembelajaran — Rp38.780.000</div>
+              </div>
+            </div>
+
+            <!-- Pilar 3 -->
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-display font-extrabold flex items-center justify-center text-sm mb-3">03</div>
+                <h3 class="font-display font-bold text-slate-900 text-base">Integrasi Strategi Literasi Lintas Mata Pelajaran & Asesmen</h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  <strong>Akar Masalah:</strong> Literasi masih kerap dipersepsikan sebagai tanggung jawab mata pelajaran bahasa semata, serta instrumen asesmen berbasis teks panjang perlu diperkuat.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <div class="text-[11px] font-bold text-emerald-700">Solusi Anggaran Pra-RKAS 2027:</div>
+                <div class="text-xs text-slate-800 font-semibold mt-0.5">Pengembangan Profesi PTK (Rp10.515.000) & Asesmen (Rp4.982.800)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fishbone / Causal Flow Visual Summary -->
+          <div class="mt-6 p-5 rounded-2xl bg-navy-900 text-white">
+            <h4 class="font-display font-bold text-sm text-amber-400 uppercase tracking-wider mb-3">Alur Kausalitas: Dari Masalah Menuju Intervensi Terukur</h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700">
+                <div class="text-amber-300 font-bold mb-1">1. Gejala (Rapor 2025)</div>
+                <p class="text-slate-300">Kemampuan Literasi kategori <strong>Sedang</strong> dan turun dibanding 2024.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700">
+                <div class="text-amber-300 font-bold mb-1">2. Akar Masalah</div>
+                <p class="text-slate-300">Koleksi bacaan terbatas, perangkat multimedia belum merata, & penguatan pedagogi literasi.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700">
+                <div class="text-emerald-300 font-bold mb-1">3. Intervensi Anggaran</div>
+                <p class="text-slate-300">Prioritas pada Multimedia (Rp38,78 Jt), Perpustakaan (Rp36,77 Jt), & PTK (Rp10,51 Jt).</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-800 border border-slate-700">
+                <div class="text-indigo-300 font-bold mb-1">4. Target Evaluasi</div>
+                <p class="text-slate-300">Peningkatan minat baca, pemanfaatan media ajar, & evaluasi berkala capaian literasi siswa.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 5: KERANGKA PERENCANAAN IRB-KE-RKAS                             -->
+      <!-- ===================================================================== -->
+      <section id="module-5" class="module-section hidden space-y-6 fade-in-up">
+        <div class="exec-card rounded-2xl p-6">
+          <div class="pb-5 border-b border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Perencanaan Berbasis Data (PBD)</span>
+            <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Kerangka Perencanaan IRB-ke-RKAS 2027</h2>
+            <p class="text-sm text-slate-600 mt-1">Penerjemahan siklus <strong>Identifikasi – Refleksi – Benahi</strong> ke dalam struktur anggaran BOS 2027</p>
+          </div>
+
+          <!-- 3-Step IRB Pipeline -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="p-5 rounded-2xl bg-rose-50/70 border border-rose-200">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-rose-700">Tahap 1 • IDENTIFIKASI</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Memilih Indikator Prioritas</h3>
+              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+                Menetapkan <strong>Kemampuan Literasi</strong> (Sedang, turun dari 2024) sebagai prioritas utama pembenahan, sembari menjaga <strong>Kualitas Pembelajaran</strong> (Baik, tertinggi) dan kondusivitas sarana belajar.
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-amber-700">Tahap 2 • REFLEKSI</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Merumuskan Akar Masalah</h3>
+              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+                Mengevaluasi kesenjangan koleksi literasi perpustakaan, kebutuhan alat multimedia pembelajaran modern, kompetensi guru dalam literasi lintas mapel, serta pemeliharaan sarana sekolah.
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">Tahap 3 • BENAHI</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Menetapkan Kegiatan & Biaya</h3>
+              <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+                Memetakan kegiatan benahi ke dalam <strong>8 Standar Nasional Pendidikan</strong> dan <strong>11 Komponen BOS</strong> dengan total alokasi teridentifikasi sebesar <strong>Rp176.380.000</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- IRB Mapping Table -->
+          <div class="mt-6 overflow-x-auto rounded-xl border border-slate-200">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-navy-900 text-white">
+                  <th class="py-3 px-4 font-semibold">Fokus Identifikasi</th>
+                  <th class="py-3 px-4 font-semibold">Kegiatan Benahi (Program)</th>
+                  <th class="py-3 px-4 font-semibold">Komponen BOS Terkait</th>
+                  <th class="py-3 px-4 font-semibold">Standar (SNP) Terkait</th>
+                  <th class="py-3 px-4 font-semibold text-right">Alokasi Anggaran</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td class="py-3.5 px-4 font-semibold text-slate-900">Kemampuan Literasi (Sedang)</td>
+                  <td class="py-3.5 px-4 text-slate-700">Pengayaan koleksi buku & optimalisasi layanan perpustakaan</td>
+                  <td class="py-3.5 px-4 text-slate-700">2. Pengembangan Perpustakaan</td>
+                  <td class="py-3.5 px-4 text-slate-700">Standar Sarana & Prasarana</td>
+                  <td class="py-3.5 px-4 text-right font-bold text-slate-900">Rp36.770.000</td>
+                </tr>
+                <tr>
+                  <td class="py-3.5 px-4 font-semibold text-slate-900">Kualitas Pembelajaran & Literasi Digital</td>
+                  <td class="py-3.5 px-4 text-slate-700">Pengadaan perangkat multimedia pembelajaran interaktif</td>
+                  <td class="py-3.5 px-4 text-slate-700">9. Penyediaan Alat Multimedia</td>
+                  <td class="py-3.5 px-4 text-slate-700">Standar Sarana & Prasarana</td>
+                  <td class="py-3.5 px-4 text-right font-bold text-slate-900">Rp38.780.000</td>
+                </tr>
+                <tr>
+                  <td class="py-3.5 px-4 font-semibold text-slate-900">Kompetensi Pedagogik & Literasi Guru</td>
+                  <td class="py-3.5 px-4 text-slate-700">Pelatihan, MGMP, & peningkatan kapasitas 21 guru & 12 tendik</td>
+                  <td class="py-3.5 px-4 text-slate-700">6. Pengembangan Profesi PTK</td>
+                  <td class="py-3.5 px-4 text-slate-700">Standar PTK</td>
+                  <td class="py-3.5 px-4 text-right font-bold text-slate-900">Rp10.515.000</td>
+                </tr>
+                <tr>
+                  <td class="py-3.5 px-4 font-semibold text-slate-900">Aktivasi Pembelajaran & Karakter</td>
+                  <td class="py-3.5 px-4 text-slate-700">Pelaksanaan KBM, ekstrakurikuler, PPDB, & evaluasi belajar</td>
+                  <td class="py-3.5 px-4 text-slate-700">Komp. 1, 3, & 4</td>
+                  <td class="py-3.5 px-4 text-slate-700">SKL, Isi, Proses, Penilaian</td>
+                  <td class="py-3.5 px-4 text-right font-bold text-slate-900">Rp27.172.800</td>
+                </tr>
+                <tr>
+                  <td class="py-3.5 px-4 font-semibold text-slate-900">Iklim Keamanan & Layanan Sekolah</td>
+                  <td class="py-3.5 px-4 text-slate-700">Pemeliharaan sarpras, daya & jasa, administrasi, & honor</td>
+                  <td class="py-3.5 px-4 text-slate-700">Komp. 5, 7, 8, & 10</td>
+                  <td class="py-3.5 px-4 text-slate-700">Sarpras, Pengelolaan, Pembiayaan</td>
+                  <td class="py-3.5 px-4 text-right font-bold text-slate-900">Rp63.142.200</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300">
+                  <td colspan="4" class="py-3 px-4">Total Alokasi Program Benahi Teridentifikasi (2027)</td>
+                  <td class="py-3 px-4 text-right text-emerald-700">Rp176.380.000</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 6: DISTRIBUSI 11 KOMPONEN PENGGUNAAN DANA BOS 2027              -->
+      <!-- ===================================================================== -->
+      <section id="module-6" class="module-section hidden space-y-6 fade-in-up">
+        <!-- Top Highlight Cards for Top 3 Largest Components -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="exec-card rounded-2xl p-5 bg-gradient-to-br from-indigo-900 to-navy-900 text-white border-none relative overflow-hidden">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-400 text-navy-950">ALOKASI #1 TERBESAR</span>
+            <h3 class="font-display font-bold text-base mt-2.5">9. Penyediaan Alat Multimedia Pembelajaran</h3>
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-amber-400 mt-2">Rp38.780.000</div>
+            <div class="text-xs text-slate-300 mt-1">15,98% dari Total Pagu • 21,99% dari Teridentifikasi</div>
+            <p class="text-[11px] text-slate-300 mt-3 leading-relaxed">
+              Mendukung transformasi pembelajaran berbasis teknologi, literasi digital, dan penyajian materi ajar interaktif di 6 rombongan belajar.
+            </p>
+          </div>
+
+          <div class="exec-card rounded-2xl p-5 bg-gradient-to-br from-emerald-900 to-navy-900 text-white border-none">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-400 text-navy-950">ALOKASI #2 TERBESAR</span>
+            <h3 class="font-display font-bold text-base mt-2.5">2. Pengembangan Perpustakaan</h3>
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-300 mt-2">Rp36.770.000</div>
+            <div class="text-xs text-slate-300 mt-1">15,15% dari Total Pagu • 20,85% dari Teridentifikasi</div>
+            <p class="text-[11px] text-slate-300 mt-3 leading-relaxed">
+              Intervensi langsung menjawab penurunan Kemampuan Literasi pada Rapor Pendidikan 2025 melalui pengayaan bahan bacaan dan layanan pustaka.
+            </p>
+          </div>
+
+          <div class="exec-card rounded-2xl p-5 bg-gradient-to-br from-slate-800 to-navy-900 text-white border-none">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-400 text-navy-950">ALOKASI #3 TERBESAR</span>
+            <h3 class="font-display font-bold text-base mt-2.5">10. Pembayaran Honor</h3>
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-sky-300 mt-2">Rp20.400.000</div>
+            <div class="text-xs text-slate-300 mt-1">8,40% dari Total Pagu • 11,57% dari Teridentifikasi</div>
+            <p class="text-[11px] text-slate-300 mt-3 leading-relaxed">
+              Menjamin kesinambungan layanan pembelajaran dan dukungan operasional personel sesuai ketentuan peraturan penggunaan Dana BOS.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Horizontal Bar Chart + Ranked Visualization -->
+        <div class="exec-card rounded-2xl p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Visualisasi Interaktif 11 Komponen BOS</span>
+              <h2 class="font-display text-xl font-bold text-slate-900 mt-0.5">Alokasi Anggaran 11 Komponen Penggunaan Dana BOS 2027</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Arahkan kursor (hover) pada batang grafik untuk melihat rincian nominal dan persentase terhadap total pagu Rp242.720.000</p>
+            </div>
+            <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 self-start">
+              <button onclick="setKompSort('ranked')" id="komp-sort-ranked" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white transition">
+                Peringkat Terbesar
+              </button>
+              <button onclick="setKompSort('seq')" id="komp-sort-seq" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition">
+                Urutan No. 1–11
+              </button>
+            </div>
+          </div>
+
+          <div id="komp-interactive-chart" class="mt-5 space-y-3"></div>
+
+          <!-- Component 11 Explicit Notice -->
+          <div class="mt-5 p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between gap-4 text-xs">
+            <div>
+              <span class="font-bold text-amber-900">Komponen 11 — Belanja Lainnya:</span>
+              <span class="text-amber-800 ml-1">Belum diisi — menunggu verifikasi dan penetapan alokasi.</span>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg bg-amber-200/70 text-amber-950 font-bold shrink-0">Status: Belum Diisi</span>
+          </div>
+        </div>
+
+        <!-- Detailed Table & Strategic Interpretation for All 11 Components -->
+        <div class="exec-card rounded-2xl p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 class="font-display font-bold text-slate-900 text-lg">Tabel Rincian & Interpretasi Strategis 11 Komponen BOS</h3>
+              <p class="text-xs text-slate-500">Persentase dihitung terhadap Total Pagu BOS (Rp242.720.000) dan Total Alokasi Teridentifikasi (Rp176.380.000)</p>
+            </div>
+            <input type="text" id="komp-search" oninput="renderKompTable()" placeholder="Cari komponen..." class="px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-60" />
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-navy-900 text-white">
+                  <th class="py-3 px-3 font-semibold w-12">No.</th>
+                  <th class="py-3 px-4 font-semibold">Komponen Penggunaan Dana BOS</th>
+                  <th class="py-3 px-4 font-semibold text-right">Anggaran (Rp)</th>
+                  <th class="py-3 px-3 font-semibold text-right">% Pagu</th>
+                  <th class="py-3 px-3 font-semibold text-right">% Terident.</th>
+                  <th class="py-3 px-4 font-semibold">Peran Strategis & Relevansi Mutu</th>
+                </tr>
+              </thead>
+              <tbody id="komp-table-body" class="divide-y divide-slate-200 bg-white"></tbody>
+              <tfoot>
+                <tr class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300">
+                  <td colspan="2" class="py-3.5 px-4">Total Komponen 1–10 (Komponen 11 Belum Diisi)</td>
+                  <td class="py-3.5 px-4 text-right text-emerald-700 font-display text-base">Rp176.380.000</td>
+                  <td class="py-3.5 px-3 text-right text-emerald-700">72,67%</td>
+                  <td class="py-3.5 px-3 text-right">100,00%</td>
+                  <td class="py-3.5 px-4 text-xs font-normal text-slate-600">Sisa pagu Rp66.340.000 (27,33%) menunggu verifikasi.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 7: DISTRIBUSI 8 STANDAR NASIONAL PENDIDIKAN (SNP) 2027          -->
+      <!-- ===================================================================== -->
+      <section id="module-7" class="module-section hidden space-y-6 fade-in-up">
+        <!-- Prominent Highlight Banner: Standar Sarana dan Prasarana -->
+        <div class="rounded-2xl bg-gradient-to-r from-navy-900 via-indigo-950 to-slate-900 text-white p-6 sm:p-7 shadow-lg border border-indigo-800/60">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="space-y-2 max-w-3xl">
+              <div class="inline-flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-400 text-navy-950">ALOKASI TERBESAR 8 SNP</span>
+                <span class="text-xs text-indigo-300 font-semibold">44,82% dari Total Teridentifikasi</span>
+              </div>
+              <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white">
+                Standar Sarana dan Prasarana — <span class="text-amber-400">Rp79.060.000</span>
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Mewakili <strong>32,57% dari total pagu BOS Rp242.720.000</strong>. Alokasi ini mencerminkan komitmen SMA Negeri 1 Jeunieb dalam menyediakan fasilitas pembelajaran yang aman, nyaman, fungsional, dan kondusif—mencakup dukungan sarana perpustakaan, perangkat multimedia pembelajaran, serta pemeliharaan prasarana sekolah yang esensial bagi keberlangsungan proses belajar mengajar.
+              </p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/10 border border-white/15 shrink-0 text-center lg:w-56">
+              <div class="text-xs text-slate-300">Proporsi terhadap Pagu</div>
+              <div class="font-display text-3xl font-extrabold text-amber-400 mt-1">32,57%</div>
+              <div class="text-[11px] text-slate-400 mt-1">Rp79.060.000 / Rp242.720.000</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Horizontal Bar Chart for 8 SNP -->
+        <div class="exec-card rounded-2xl p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Visualisasi Interaktif 8 SNP</span>
+              <h3 class="font-display text-xl font-bold text-slate-900 mt-0.5">Distribusi Anggaran Berdasarkan 8 Standar Nasional Pendidikan</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Perbandingan proporsi setiap standar terhadap pagu BOS Rp242.720.000 dan total teridentifikasi Rp176.380.000</p>
+            </div>
+            <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 self-start">
+              <button onclick="setSnpSort('ranked')" id="snp-sort-ranked" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white transition">
+                Peringkat Terbesar
+              </button>
+              <button onclick="setSnpSort('seq')" id="snp-sort-seq" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition">
+                Urutan Standar 1–8
+              </button>
+            </div>
+          </div>
+
+          <div id="snp-interactive-chart" class="mt-5 space-y-3.5"></div>
+        </div>
+
+        <!-- Detailed Financial Table & Analytical Interpretation of 8 Standards -->
+        <div class="exec-card rounded-2xl p-6">
+          <h3 class="font-display font-bold text-slate-900 text-lg mb-1">Tabel Rincian & Analisis 8 Standar Nasional Pendidikan</h3>
+          <p class="text-xs text-slate-500 mb-4">Klasifikasi ini merupakan sudut pandang pemenuhan standar mutu atas total rencana belanja yang sama sebesar Rp176.380.000.</p>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-navy-900 text-white">
+                  <th class="py-3 px-3 font-semibold w-12">No.</th>
+                  <th class="py-3 px-4 font-semibold">Standar Nasional Pendidikan (SNP)</th>
+                  <th class="py-3 px-4 font-semibold text-right">Anggaran (Rp)</th>
+                  <th class="py-3 px-3 font-semibold text-right">% Pagu</th>
+                  <th class="py-3 px-3 font-semibold text-right">% Terident.</th>
+                  <th class="py-3 px-4 font-semibold">Interpretasi Analitis</th>
+                </tr>
+              </thead>
+              <tbody id="snp-table-body" class="divide-y divide-slate-200 bg-white"></tbody>
+              <tfoot>
+                <tr class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300">
+                  <td colspan="2" class="py-3.5 px-4">Total Keseluruhan 8 Standar Nasional Pendidikan</td>
+                  <td class="py-3.5 px-4 text-right text-indigo-700 font-display text-base">Rp176.380.000</td>
+                  <td class="py-3.5 px-3 text-right text-indigo-700">72,67%</td>
+                  <td class="py-3.5 px-3 text-right">100,00%</td>
+                  <td class="py-3.5 px-4 text-xs font-normal text-slate-600">Selisih Rp0 dengan total 11 Komponen BOS.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 8: REKONSILIASI & VALIDASI ANGGARAN (MANDATORY AUDIT VIEW)       -->
+      <!-- ===================================================================== -->
+      <section id="module-8" class="module-section hidden space-y-6 fade-in-up">
+        <!-- Executive Audit Header Card -->
+        <div class="exec-card rounded-2xl p-6 border-t-4 border-t-amber-500">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Validasi Integritas Data Keuangan</span>
+              <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Dashboard Rekonsiliasi & Validasi Anggaran BOS 2027</h2>
+              <p class="text-sm text-slate-600 mt-1">Uji konsistensi silang antara Pagu Resmi, Klasifikasi 8 SNP, dan Klasifikasi 11 Komponen BOS</p>
+            </div>
+            <span class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold self-start">
+              ✓ Selisih Klasifikasi: Rp0 (Valid)
+            </span>
+          </div>
+
+          <!-- 4 Pillars of Reconciliation (A, B, C, D) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            <!-- A -->
+            <div class="p-4 rounded-2xl bg-slate-900 text-white">
+              <div class="text-[11px] font-bold text-slate-400 uppercase">A. Total Pagu Anggaran</div>
+              <div class="font-display text-2xl font-extrabold text-white mt-1.5">Rp242.720.000</div>
+              <div class="mt-2 inline-block px-2 py-0.5 rounded bg-white/10 text-xs font-semibold text-amber-300">100,00% Pagu Resmi</div>
+              <p class="text-[11px] text-slate-400 mt-2">Plafon dana BOS TA 2027 SMA Negeri 1 Jeunieb.</p>
+            </div>
+            <!-- B -->
+            <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+              <div class="text-[11px] font-bold text-emerald-800 uppercase">B. Total Alokasi Teridentifikasi</div>
+              <div class="font-display text-2xl font-extrabold text-emerald-900 mt-1.5">Rp176.380.000</div>
+              <div class="mt-2 inline-block px-2 py-0.5 rounded bg-emerald-200/80 text-xs font-bold text-emerald-950">72,67% dari Total Pagu</div>
+              <p class="text-[11px] text-emerald-800 mt-2">Rincian belanja yang telah dipetakan pada program.</p>
+            </div>
+            <!-- C -->
+            <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-400">
+              <div class="text-[11px] font-bold text-amber-900 uppercase">C. Sisa Pagu Belum Teridentifikasi</div>
+              <div class="font-display text-2xl font-extrabold text-amber-700 mt-1.5">Rp66.340.000</div>
+              <div class="mt-2 inline-block px-2 py-0.5 rounded bg-amber-200 text-xs font-bold text-amber-950">27,33% dari Total Pagu</div>
+              <p class="text-[11px] text-amber-900 mt-2">Sisa Pagu yang Belum Teridentifikasi dalam Rincian Anggaran.</p>
+            </div>
+            <!-- D -->
+            <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200">
+              <div class="text-[11px] font-bold text-indigo-800 uppercase">D. Konsistensi 8 SNP vs 11 Komp.</div>
+              <div class="font-display text-2xl font-extrabold text-indigo-900 mt-1.5">Selisih Rp0</div>
+              <div class="mt-2 inline-block px-2 py-0.5 rounded bg-indigo-200/80 text-xs font-bold text-indigo-950">100% Sinkron</div>
+              <p class="text-[11px] text-indigo-800 mt-2">Rp176.380.000 (8 SNP) = Rp176.380.000 (Komp. 1–10).</p>
+            </div>
+          </div>
+
+          <!-- Visual Proportion Bar of Total Pagu -->
+          <div class="mt-6 p-5 rounded-2xl bg-slate-50 border border-slate-200">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-slate-700 mb-2">
+              <span>Komposisi Total Pagu Dana BOS TA 2027 (Rp242.720.000)</span>
+              <span>72,67% Teridentifikasi + 27,33% Belum Teridentifikasi = 100,00%</span>
+            </div>
+            <div class="w-full h-9 rounded-xl overflow-hidden flex text-xs font-bold shadow-inner">
+              <div class="bg-emerald-600 text-white flex items-center justify-center px-2" style="width: 72.67%">
+                Alokasi Teridentifikasi: Rp176.380.000 (72,67%)
+              </div>
+              <div class="bg-amber-400 text-navy-950 flex items-center justify-center px-2" style="width: 27.33%">
+                Belum Teridentifikasi: Rp66.340.000 (27,33%)
+              </div>
+            </div>
+          </div>
+
+          <!-- Verbatim Mandatory Statement Box -->
+          <div class="mt-6 p-5 rounded-2xl bg-navy-900 text-white border-l-4 border-amber-400">
+            <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5">Pernyataan Resmi Rekonsiliasi Anggaran</div>
+            <p class="text-sm sm:text-base leading-relaxed text-slate-100 font-medium">
+              “Total alokasi berdasarkan 8 Standar Nasional Pendidikan dan 11 Komponen Penggunaan Dana BOS telah menunjukkan kesesuaian sebesar Rp176.380.000. Namun, masih terdapat selisih Rp66.340.000 terhadap total pagu yang memerlukan penelusuran dan rekonsiliasi lebih lanjut.”
+            </p>
+          </div>
+
+          <!-- Governance & Audit Rules Box -->
+          <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white">
+              <h3 class="font-display font-bold text-slate-900 text-sm mb-3">Prinsip Akuntabilitas terhadap Sisa Pagu Rp66.340.000</h3>
+              <ul class="space-y-2.5 text-xs text-slate-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600 font-bold">1.</span>
+                  <span><strong>Status Resmi:</strong> Dicatat secara transparan sebagai <em>“Sisa Pagu yang Belum Teridentifikasi dalam Rincian Anggaran”</em> sebesar <strong>Rp66.340.000 (27,33%)</strong>.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600 font-bold">2.</span>
+                  <span><strong>Bukan Efisiensi / Sisa Lebih Final:</strong> Selisih ini tidak diklaim sebagai penghematan atau sisa lebih anggaran yang telah disahkan.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600 font-bold">3.</span>
+                  <span><strong>Tidak Otomatis Masuk Komponen 11:</strong> Komponen 11 (Belanja Lainnya) tetap berstatus <em>“Belum diisi — menunggu verifikasi dan penetapan alokasi”</em> hingga rincian kegiatan diverifikasi bersama Tim BOS dan Pengawas Sekolah.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white">
+              <h3 class="font-display font-bold text-slate-900 text-sm mb-3">Klarifikasi Metodologi Klasifikasi Ganda (8 SNP vs 11 Komponen)</h3>
+              <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                Dalam tata kelola RKAS, <strong>8 Standar Nasional Pendidikan</strong> dan <strong>11 Komponen Penggunaan Dana BOS</strong> merupakan <strong>dua sudut pandang klasifikasi yang berbeda atas rencana belanja yang sama (Rp176.380.000)</strong>, sehingga <strong>tidak boleh dijumlahkan satu sama lain</strong>.
+              </p>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Total Klasifikasi 8 Standar Nasional Pendidikan:</span>
+                  <span class="font-bold text-slate-900">Rp176.380.000</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Total Klasifikasi 11 Komponen BOS (No. 1–10):</span>
+                  <span class="font-bold text-slate-900">Rp176.380.000</span>
+                </div>
+                <div class="flex justify-between pt-1.5 border-t border-slate-200 text-emerald-700 font-bold">
+                  <span>Selisih Silang Antar Klasifikasi:</span>
+                  <span>Rp0 (Konsisten)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 9: PROGRAM PRIORITAS & ANALISIS DAMPAK STRATEGIS                -->
+      <!-- ===================================================================== -->
+      <section id="module-9" class="module-section hidden space-y-6 fade-in-up">
+        <div class="exec-card rounded-2xl p-6">
+          <div class="pb-5 border-b border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Kajian Eksekutif & Rasionalisasi Kebijakan</span>
+            <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Analisis Dampak Strategis Alokasi Anggaran</h2>
+            <p class="text-sm text-slate-600 mt-1">6 Pilar rasionalisasi penggunaan Dana BOS 2027 bagi peningkatan mutu pendidikan SMA Negeri 1 Jeunieb</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+            <!-- 1. Library & Literacy -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">1. Perpustakaan & Literasi</span>
+                <span class="text-xs font-bold text-slate-900">Rp36.770.000</span>
+              </div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Mengapa Alokasi Perpustakaan Krusial bagi Pemulihan Literasi?</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Rapor Pendidikan 2025 menunjukkan Kemampuan Literasi berada pada kategori <em>Sedang</em> dan menurun dibanding 2024. Alokasi Rp36.770.000 (15,15% pagu) difokuskan untuk memperkaya ketersediaan bahan bacaan bermutu dan merevitalisasi fungsi perpustakaan sebagai pusat literasi sekolah yang ramah bagi 151 peserta didik.
+              </p>
+            </div>
+
+            <!-- 2. Multimedia & Teaching Quality -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg">2. Multimedia Pembelajaran</span>
+                <span class="text-xs font-bold text-slate-900">Rp38.780.000</span>
+              </div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Bagaimana Fasilitas Multimedia Mendukung Proses Belajar Mengajar?</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Sebagai komponen belanja terbesar (15,98% pagu), penyediaan alat multimedia pembelajaran memperkuat keunggulan sekolah pada indikator <em>Kualitas Pembelajaran</em> (kategori Baik). Perangkat multimedia memungkinkan guru menyajikan sumber belajar visual, teks multimodal, dan simulasi interaktif di 6 rombel.
+              </p>
+            </div>
+
+            <!-- 3. Teacher Professional Development -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg">3. Pengembangan Profesi PTK</span>
+                <span class="text-xs font-bold text-slate-900">Rp10.515.000</span>
+              </div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Mengapa Pengembangan Profesi Guru & Tendik Sangat Penting?</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Sarana fisik dan buku tidak akan berdampak optimal tanpa kapasitas pedagogik pendidik. Investasi Rp10.515.000 diarahkan untuk meningkatkan kompetensi 21 guru dan 12 tenaga kependidikan dalam merancang pembelajaran berdiferensiasi, asesmen diagnostik, dan integrasi literasi di setiap mata pelajaran.
+              </p>
+            </div>
+
+            <!-- 4. Infrastructure & Safe Environment -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg">4. Standar Sarpras & Pemeliharaan</span>
+                <span class="text-xs font-bold text-slate-900">Rp79.060.000 (SNP)</span>
+              </div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Bagaimana Sarana & Prasarana Mewujudkan Lingkungan Belajar Aman?</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Dengan porsi terbesar pada klasifikasi SNP (Rp79.060.000, termasuk pemeliharaan sarpras Rp10.650.000 pada komponen BOS), sekolah menjaga kelayakan ruang belajar, kenyamanan fisik, dan fungsi fasilitas pendukung sehingga iklim keamanan dan kenyamanan belajar siswa tetap terjaga.
+              </p>
+            </div>
+
+            <!-- 5. Operational Expenditures -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-lg">5. Operasional & Layanan Dasar</span>
+                <span class="text-xs font-bold text-slate-900">Rp52.492.200</span>
+              </div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Bagaimana Belanja Operasional Menopang Layanan Pendidikan?</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Alokasi pada Langganan Daya & Jasa (Rp18.979.200), Administrasi Kegiatan Sekolah (Rp13.113.000), dan Pembayaran Honor (Rp20.400.000) memastikan operasional harian, konektivitas listrik/internet, tata kelola persuratan, dan dukungan layanan PTK berjalan tanpa hambatan.
+              </p>
+            </div>
+
+            <!-- 6. Linking Financial Planning to Rapor Pendidikan -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg">6. Akuntabilitas Berbasis Data</span>
+                <span class="text-xs font-bold text-slate-900">Siklus Evaluasi</span>
+              </div>
+              <h3 class="font-display font-bold text-slate-900 text-base">Mengapa Perencanaan Keuangan Harus Terhubung dengan Rapor Pendidikan?</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Keterkaitan antara RKAS dan Rapor Pendidikan memastikan anggaran tidak disusun secara rutin-administratif semata, melainkan menjadi instrumen strategis yang terukur. Setiap alokasi diposisikan sebagai <strong>sasaran perencanaan strategis yang wajib dievaluasi dampaknya</strong> terhadap kualitas proses dan hasil belajar siswa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- MODUL 10: AKUNTABILITAS, TATA KELOLA & CATATAN PRESENTER              -->
+      <!-- ===================================================================== -->
+      <section id="module-10" class="module-section hidden space-y-6 fade-in-up">
+        <div class="exec-card rounded-2xl p-6">
+          <div class="pb-5 border-b border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Penutup & Tindak Lanjut Kelembagaan</span>
+            <h2 class="font-display text-2xl font-bold text-slate-900 mt-1">Akuntabilitas, Tata Kelola & Agenda Tindak Lanjut</h2>
+            <p class="text-sm text-slate-600 mt-1">Langkah penyempurnaan Pra-RKAS BOS 2027 menuju penetapan RKAS definitif SMA Negeri 1 Jeunieb</p>
+          </div>
+
+          <!-- 4 Actionable Governance Steps -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-bold text-indigo-700 uppercase">Langkah 1 • Rekonsiliasi Sisa Pagu</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Penelusuran Rp66.340.000 (27,33% Pagu)</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Tim BOS Sekolah bersama Kepala Sekolah dan Pengawas Sekolah melakukan verifikasi kebutuhan prioritas tambahan guna menetapkan peruntukan <strong>Rp66.340.000</strong> yang saat ini belum teridentifikasi dalam rincian anggaran, termasuk evaluasi pengisian Komponen 11 bila diperlukan sesuai juknis.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-bold text-emerald-700 uppercase">Langkah 2 • Validasi RKAS & ARKAS</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Sinkronisasi Kode Rekening & Standar</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Memastikan seluruh rincian kegiatan pada aplikasi ARKAS mempertahankan konsistensi nol selisih (Rp0) antara klasifikasi 8 Standar Nasional Pendidikan dan 11 Komponen Penggunaan Dana BOS.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-bold text-amber-700 uppercase">Langkah 3 • Monitoring Program Literasi</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Evaluasi Berkala Dampak Anggaran</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Melaksanakan pemantauan triwulanan atas pemanfaatan koleksi perpustakaan (Rp36.770.000) dan perangkat multimedia (Rp38.780.000) dalam pembelajaran untuk mengukur efektivitas upaya pemulihan skor literasi.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div class="text-xs font-bold text-slate-700 uppercase">Langkah 4 • Transparansi Publik Sekolah</div>
+              <h3 class="font-display font-bold text-slate-900 text-base mt-1">Pelaporan Partisipatif & Akuntabel</h3>
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Melibatkan Komite Sekolah dan dewan guru dalam reviu Pra-RKAS serta mempublikasikan ringkasan realisasi Dana BOS pada papan informasi sekolah sebagai wujud akuntabilitas publik.
+              </p>
+            </div>
+          </div>
+
+          <!-- Closing Institutional Message -->
+          <div class="mt-6 rounded-2xl bg-gradient-to-r from-navy-950 via-navy-900 to-slate-800 text-white p-6 sm:p-8 text-center space-y-3">
+            <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+              Komitmen Mutu SMA Negeri 1 Jeunieb
+            </div>
+            <blockquote class="font-display text-lg sm:text-xl font-bold text-white max-w-3xl mx-auto leading-snug">
+              “Perencanaan Dana BOS yang baik bukan hanya tentang ketepatan alokasi anggaran, tetapi tentang bagaimana setiap program menjawab kebutuhan nyata sekolah dan memberikan dampak terhadap peningkatan mutu pendidikan.”
+            </blockquote>
+            <div class="pt-3 text-xs text-slate-400">
+              Disusun oleh Tim Perencanaan & Tim BOS SMA Negeri 1 Jeunieb — Untuk Rapat Koordinasi bersama Kepala Cabang Dinas Pendidikan Wilayah Kabupaten Bireuen & Pengawas Sekolah.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Quick Slide Navigation Bar -->
+    <footer class="no-print border-t border-slate-200 bg-white px-4 sm:px-6 lg:px-8 py-3">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+        <div>
+          <strong class="text-slate-800">PRA-RKAS BOS 2027</strong> • SMA Negeri 1 Jeunieb (Kab. Bireuen)
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="navigateSlide(-1)" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium">← Sebelumnya</button>
+          <button onclick="navigateSlide(1)" class="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-800 text-white font-medium">Selanjutnya →</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- PRESENTER NOTES SLIDE-OVER DRAWER -->
+  <aside id="presenter-drawer" class="fixed top-0 right-0 z-50 h-screen w-full sm:w-96 bg-navy-950 text-slate-200 border-l border-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">Panduan Paparan Eksekutif</span>
+        <h3 class="font-display font-bold text-white text-base">Catatan Presenter</h3>
+      </div>
+      <button onclick="togglePresenterNotes(false)" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="Tutup Catatan">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="presenter-notes-content" class="flex-1 overflow-y-auto p-5 space-y-4 text-xs leading-relaxed">
+      <!-- Dynamically populated per active slide -->
+    </div>
+    <div class="p-4 border-t border-slate-800 bg-navy-900/80 text-[11px] text-slate-400">
+      Audiens: Kepala Cabang Dinas Pendidikan Wil. Kab. Bireuen, Pengawas Sekolah, Kepala Sekolah, & Tim BOS.
+    </div>
+  </aside>
+
+  <!-- JAVASCRIPT DATA & INTERACTIVE ENGINE -->
+  <script>
+    // =========================================================================
+    // 1. MASTER FINANCIAL & INSTITUTIONAL DATA (FINAL REVISED FIGURES)
+    // =========================================================================
+    const TOTAL_PAGU = 242720000;
+    const TOTAL_TERIDENTIFIKASI = 176380000;
+    const SISA_PAGU = 66340000;
+
+    const MODULES = [
+      {
+        id: 1,
+        short: "01. Dashboard Utama",
+        title: "Dashboard Eksekutif Utama",
+        notes: [
+          "Sampaikan salam hormat kepada Kepala Cabang Dinas Pendidikan Wilayah Kabupaten Bireuen, Pengawas Sekolah, Kepala SMA Negeri 1 Jeunieb, dan Tim BOS Sekolah.",
+          "Tegaskan profil skala sekolah: 151 peserta didik, 6 rombel, dan 33 personel (21 guru dan 12 tendik).",
+          "Soroti angka kunci: Total Pagu BOS 2027 sebesar Rp242.720.000, alokasi teridentifikasi Rp176.380.000 (72,67%), dan sisa pagu belum teridentifikasi Rp66.340.000 (27,33%).",
+          "Tekankan keselarasan 100% (selisih Rp0) antara klasifikasi 8 SNP dan 11 Komponen BOS."
+        ]
+      },
+      {
+        id: 2,
+        short: "02. Profil Sekolah",
+        title: "Profil Sekolah & Sumber Daya Manusia",
+        notes: [
+          "Jelaskan bahwa 151 peserta didik terbagi dalam 6 rombongan belajar dengan rasio guru-siswa 1:7,2 (21 guru).",
+          "Kapasitas SDM 33 personel merupakan aset strategis untuk menjalankan program peningkatan literasi secara intensif di setiap kelas.",
+          "Jelaskan implikasi jumlah siswa terhadap total pagu Rp242.720.000 sehingga perencanaan harus selektif dan berbasis prioritas."
+        ]
+      },
+      {
+        id: 3,
+        short: "03. Rapor Pendidikan 2025",
+        title: "Analisis Rapor Pendidikan 2025",
+        notes: [
+          "Fokuskan perhatian pimpinan pada dua temuan utama Rapor Pendidikan 2025:",
+          "Pertama, Kemampuan Literasi berada pada kategori 'Sedang' dan mengalami penurunan dibanding 2024—inilah prioritas utama pembenahan kita.",
+          "Kedua, Kualitas Pembelajaran meraih kategori 'Baik' dengan capaian tertinggi dan peningkatan positif—ini kekuatan utama guru-guru kita.",
+          "Tegaskan bahwa anggaran adalah instrumen intervensi yang akan dievaluasi berkala, bukan klaim kenaikan skor otomatis."
+        ]
+      },
+      {
+        id: 4,
+        short: "04. Akar Masalah",
+        title: "Analisis Akar Masalah (Root Cause Analysis)",
+        notes: [
+          "Uraikan 3 akar masalah utama di balik penurunan literasi: keterbatasan koleksi bacaan non-teks di perpustakaan, kebutuhan perangkat multimedia ajar di kelas, serta integrasi literasi dalam asesmen lintas mapel.",
+          "Tunjukkan bagaimana setiap akar masalah langsung dijawab oleh pos anggaran spesifik pada Pra-RKAS 2027."
+        ]
+      },
+      {
+        id: 5,
+        short: "05. Kerangka IRB-RKAS",
+        title: "Kerangka Perencanaan IRB-ke-RKAS 2027",
+        notes: [
+          "Tunjukkan alur logis Perencanaan Berbasis Data (Identifikasi – Refleksi – Benahi).",
+          "Perlihatkan keterhubungan langsung antara kegiatan benahi dengan kode komponen BOS dan Standar Nasional Pendidikan yang berjumlah tepat Rp176.380.000."
+        ]
+      },
+      {
+        id: 6,
+        short: "06. 11 Komponen BOS",
+        title: "Distribusi 11 Komponen Penggunaan Dana BOS",
+        notes: [
+          "Soroti 3 alokasi terbesar: (1) Penyediaan Alat Multimedia Pembelajaran Rp38.780.000 (15,98% pagu), (2) Pengembangan Perpustakaan Rp36.770.000 (15,15% pagu), dan (3) Pembayaran Honor Rp20.400.000 (8,40% pagu).",
+          "Total Komponen 1 sampai 10 adalah Rp176.380.000.",
+          "Tegaskan bahwa Komponen 11 (Belanja Lainnya) sengaja dibiarkan 'Belum diisi — menunggu verifikasi dan penetapan alokasi' dan tidak diisi otomatis dengan sisa pagu."
+        ]
+      },
+      {
+        id: 7,
+        short: "07. 8 Standar (SNP)",
+        title: "Distribusi 8 Standar Nasional Pendidikan (SNP)",
+        notes: [
+          "Soroti Standar Sarana dan Prasarana sebagai alokasi terbesar yakni Rp79.060.000 (32,57% dari pagu atau 44,82% dari total teridentifikasi).",
+          "Jelaskan relevansinya dalam mendukung lingkungan belajar yang aman, nyaman, fungsional, dan kondusif (mencakup dukungan perpustakaan, multimedia, dan pemeliharaan).",
+          "Ingatkan audiens bahwa total 8 SNP sebesar Rp176.380.000 merupakan sudut pandang lain dari belanja yang sama, bukan anggaran terpisah."
+        ]
+      },
+      {
+        id: 8,
+        short: "08. Rekonsiliasi Audit",
+        title: "Rekonsiliasi & Validasi Anggaran (Wajib Audit)",
+        notes: [
+          "Bacakan pernyataan resmi rekonsiliasi secara utuh di hadapan Kepala Cabang Dinas dan Pengawas Sekolah.",
+          "Jelaskan 4 angka kunci: Pagu Rp242.720.000, Teridentifikasi Rp176.380.000 (72,67%), Selisih antar klasifikasi Rp0, dan Sisa Pagu Belum Teridentifikasi Rp66.340.000 (27,33%).",
+          "Tegaskan bahwa Rp66.340.000 tidak diklaim sebagai penghematan final dan tidak otomatis dimasukkan ke Belanja Lainnya sebelum verifikasi bersama."
+        ]
+      },
+      {
+        id: 9,
+        short: "09. Dampak Strategis",
+        title: "Program Prioritas & Analisis Dampak Strategis",
+        notes: [
+          "Paparkan 6 rasionalisasi kebijakan: hubungan perpustakaan dengan literasi, multimedia dengan kualitas pembelajaran, pelatihan PTK, kelayakan sarpras, operasional dasar, dan evaluasi berbasis Rapor Pendidikan.",
+          "Tekankan pendekatan kehati-hatian analitis: keberhasilan program diukur melalui evaluasi berkala."
+        ]
+      },
+      {
+        id: 10,
+        short: "10. Akuntabilitas & Penutup",
+        title: "Akuntabilitas, Tata Kelola & Tindak Lanjut",
+        notes: [
+          "Tutup paparan dengan 4 langkah konkret: penelusuran sisa pagu Rp66.340.000, sinkronisasi ARKAS, monitoring triwulanan literasi, dan transparansi kepada komite sekolah.",
+          "Bacakan kembali pesan utama SMA Negeri 1 Jeunieb sebagai penutup presentasi."
+        ]
+      }
+    ];
+
+    // 11 Komponen Penggunaan Dana BOS (Final Data)
+    const KOMPONEN_BOS = [
+      {
+        no: 1,
+        nama: "Penerimaan Peserta Didik Baru (PPDB) / Penerimaan Murid Baru",
+        anggaran: 4580000,
+        status: "filled",
+        strategi: "Mendukung sosialisasi, pendataan, dan layanan penerimaan peserta didik baru secara transparan dan inklusif."
+      },
+      {
+        no: 2,
+        nama: "Pengembangan Perpustakaan",
+        anggaran: 36770000,
+        status: "filled",
+        highlight: "#2 Terbesar",
+        strategi: "Prioritas utama pemulihan indikator Kemampuan Literasi (Rapor 2025) melalui pengayaan bahan bacaan dan layanan perpustakaan."
+      },
+      {
+        no: 3,
+        nama: "Pelaksanaan Kegiatan Pembelajaran dan Ekstrakurikuler",
+        anggaran: 17610000,
+        status: "filled",
+        strategi: "Menopang proses belajar aktif di 6 rombel serta pengembangan minat, bakat, dan karakter 151 peserta didik."
+      },
+      {
+        no: 4,
+        nama: "Pelaksanaan Kegiatan Asesmen dan Evaluasi Pembelajaran",
+        anggaran: 4982800,
+        status: "filled",
+        strategi: "Pembiayaan evaluasi hasil belajar formatif dan sumatif untuk memantau perkembangan kompetensi akademik siswa."
+      },
+      {
+        no: 5,
+        nama: "Pelaksanaan Administrasi Kegiatan Sekolah",
+        anggaran: 13113000,
+        status: "filled",
+        strategi: "Menjamin tertib administrasi ketatausahaan, pelaporan RKAS, dan dukungan layanan manajemen satuan pendidikan."
+      },
+      {
+        no: 6,
+        nama: "Pengembangan Profesi Guru dan Tenaga Kependidikan",
+        anggaran: 10515000,
+        status: "filled",
+        strategi: "Penguatan kapasitas pedagogik dan literasi pembelajaran bagi 21 guru dan 12 tenaga kependidikan."
+      },
+      {
+        no: 7,
+        nama: "Pembiayaan Langganan Daya dan Jasa",
+        anggaran: 18979200,
+        status: "filled",
+        strategi: "Menjamin ketersediaan listrik, internet, dan utilitas dasar penunjang operasional harian serta pembelajaran digital."
+      },
+      {
+        no: 8,
+        nama: "Pemeliharaan Sarana dan Prasarana Sekolah",
+        anggaran: 10650000,
+        status: "filled",
+        strategi: "Perawatan rutin fasilitas belajar agar lingkungan sekolah tetap aman, nyaman, dan berfungsi optimal."
+      },
+      {
+        no: 9,
+        nama: "Penyediaan Alat Multimedia Pembelajaran",
+        anggaran: 38780000,
+        status: "filled",
+        highlight: "#1 Terbesar",
+        strategi: "Alokasi terbesar untuk modernisasi media pembelajaran interaktif di kelas guna memperkuat Kualitas Pembelajaran & literasi digital."
+      },
+      {
+        no: 10,
+        nama: "Pembayaran Honor",
+        anggaran: 20400000,
+        status: "filled",
+        highlight: "#3 Terbesar",
+        strategi: "Dukungan pembiayaan honorarium sesuai ketentuan regulasi untuk menjaga keberlangsungan layanan pendidikan."
+      },
+      {
+        no: 11,
+        nama: "Belanja Lainnya",
+        anggaran: 0,
+        status: "unfilled",
+        statusText: "Belum diisi — menunggu verifikasi dan penetapan alokasi.",
+        strategi: "Belum diisi — menunggu hasil penelusuran dan rekonsiliasi sisa pagu Rp66.340.000 bersama Tim BOS dan Pengawas."
+      }
+    ];
+
+    // 8 Standar Nasional Pendidikan (Final Data)
+    const STANDAR_SNP = [
+      {
+        no: 1,
+        nama: "Standar Kompetensi Lulusan (SKL)",
+        anggaran: 11480000,
+        analisis: "Mendukung penguatan capaian kompetensi akademik, literasi, dan pembentukan karakter lulusan."
+      },
+      {
+        no: 2,
+        nama: "Standar Isi",
+        anggaran: 1550000,
+        analisis: "Penyusunan perangkat kurikulum satuan pendidikan, silabus, dan perangkat ajar yang relevan dengan kebutuhan siswa."
+      },
+      {
+        no: 3,
+        nama: "Standar Proses",
+        anggaran: 17552000,
+        analisis: "Menjaga capaian kategori Baik pada Kualitas Pembelajaran melalui aktivitas belajar aktif dan inovatif."
+      },
+      {
+        no: 4,
+        nama: "Standar Pendidikan dan Tenaga Kependidikan (PTK)",
+        anggaran: 10515000,
+        analisis: "Peningkatan kompetensi profesional 21 guru dan 12 tenaga kependidikan secara berkelanjutan."
+      },
+      {
+        no: 5,
+        nama: "Standar Sarana dan Prasarana",
+        anggaran: 79060000,
+        highlight: "Alokasi Terbesar",
+        analisis: "Porsi terbesar (32,57% pagu) untuk mewujudkan lingkungan belajar aman, nyaman, fungsional, serta mendukung perpustakaan dan multimedia."
+      },
+      {
+        no: 6,
+        nama: "Standar Pengelolaan",
+        anggaran: 24705000,
+        analisis: "Tata kelola kelembagaan, perencanaan berbasis data, administrasi sekolah, dan akuntabilitas manajemen."
+      },
+      {
+        no: 7,
+        nama: "Standar Pembiayaan",
+        anggaran: 26168000,
+        analisis: "Menopang pembiayaan operasional rutin sekolah, langganan daya dan jasa, serta dukungan layanan personel."
+      },
+      {
+        no: 8,
+        nama: "Standar Penilaian Pendidikan",
+        anggaran: 5350000,
+        analisis: "Pelaksanaan asesmen formatif/sumatif yang terstandar untuk memantau perkembangan belajar siswa."
+      }
+    ];
+
+    // =========================================================================
+    // 2. FORMATTING & STATE HELPERS
+    // =========================================================================
+    let currentModule = 1;
+    let kompSortMode = 'ranked'; // 'ranked' | 'seq'
+    let snpSortMode = 'ranked';  // 'ranked' | 'seq'
+    let isPresenterOpen = false;
+    let isPresentationMode = false;
+
+    function formatRp(num) {
+      return 'Rp' + num.toLocaleString('id-ID');
+    }
+
+    function pctOfPagu(num) {
+      return ((num / TOTAL_PAGU) * 100).toFixed(2).replace('.', ',') + '%';
+    }
+
+    function pctOfIdentified(num) {
+      return ((num / TOTAL_TERIDENTIFIKASI) * 100).toFixed(2).replace('.', ',') + '%';
+    }
+
+    // =========================================================================
+    // 3. TOOLTIP HANDLERS
+    // =========================================================================
+    const tooltipEl = document.getElementById('chart-tooltip');
+
+    function showTooltip(e, title, amount, extraNote = '') {
+      const paguPct = pctOfPagu(amount);
+      const idPct = pctOfIdentified(amount);
+      tooltipEl.innerHTML = `
+        <div class="font-display font-bold text-amber-300 text-xs mb-1">${title}</div>
+        <div class="text-white font-bold text-sm">${amount > 0 ? formatRp(amount) : 'Belum diisi'}</div>
+        ${amount > 0 ? `
+          <div class="text-slate-300 text-[11px] mt-1">• ${paguPct} dari Total Pagu (Rp242.720.000)</div>
+          <div class="text-emerald-300 text-[11px]">• ${idPct} dari Teridentifikasi (Rp176.380.000)</div>
+        ` : `<div class="text-amber-200 text-[11px] mt-1">${extraNote}</div>`}
+      `;
+      tooltipEl.classList.remove('hidden');
+      moveTooltip(e);
+    }
+
+    function moveTooltip(e) {
+      const x = Math.min(e.clientX + 14, window.innerWidth - 290);
+      const y = Math.min(e.clientY + 14, window.innerHeight - 110);
+      tooltipEl.style.left = x + 'px';
+      tooltipEl.style.top = y + 'px';
+    }
+
+    function hideTooltip() {
+      tooltipEl.classList.add('hidden');
+    }
+
+    // =========================================================================
+    // 4. NAVIGATION & PRESENTER NOTES
+    // =========================================================================
+    function renderSidebar() {
+      const nav = document.getElementById('sidebar-nav');
+      nav.innerHTML = MODULES.map(m => {
+        const active = m.id === currentModule;
+        return `
+          <button onclick="selectModule(${m.id})"
+            class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium flex items-center justify-between transition ${
+              active
+                ? 'bg-amber-500 text-navy-950 font-bold shadow-md shadow-amber-500/20'
+                : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
+            }">
+            <span class="truncate">${m.short}</span>
+            ${active ? '<span class="w-1.5 h-1.5 rounded-full bg-navy-950 shrink-0"></span>' : ''}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectModule(id) {
+      if (id < 1 || id > MODULES.length) return;
+      currentModule = id;
+
+      // Toggle section visibility
+      document.querySelectorAll('.module-section').forEach(sec => sec.classList.add('hidden'));
+      const activeSec = document.getElementById('module-' + id);
+      if (activeSec) {
+        activeSec.classList.remove('hidden');
+      }
+
+      // Update Header Info
+      const mod = MODULES.find(m => m.id === id);
+      document.getElementById('header-badge').textContent = `Modul ${String(id).padStart(2, '0')} / 10`;
+      document.getElementById('header-title').textContent = mod.title;
+      document.getElementById('slide-counter').textContent = `${id} / 10`;
+      document.getElementById('btn-prev').disabled = id === 1;
+      document.getElementById('btn-next').disabled = id === 10;
+
+      renderSidebar();
+      renderPresenterNotes();
+      toggleMobileSidebar(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navigateSlide(delta) {
+      selectModule(currentModule + delta);
+    }
+
+    function toggleMobileSidebar(open) {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('mobile-backdrop');
+      if (open) {
+        sidebar.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.add('hidden');
+      }
+    }
+
+    function togglePresentationMode() {
+      isPresentationMode = !isPresentationMode;
+      document.body.classList.toggle('presentation-mode', isPresentationMode);
+      document.getElementById('present-label').textContent = isPresentationMode ? 'Keluar Presentasi' : 'Mode Presentasi';
+    }
+
+    function togglePresenterNotes(forceState) {
+      isPresenterOpen = typeof forceState === 'boolean' ? forceState : !isPresenterOpen;
+      const drawer = document.getElementById('presenter-drawer');
+      if (isPresenterOpen) {
+        drawer.classList.remove('translate-x-full');
+      } else {
+        drawer.classList.add('translate-x-full');
+      }
+    }
+
+    function renderPresenterNotes() {
+      const mod = MODULES.find(m => m.id === currentModule);
+      const container = document.getElementById('presenter-notes-content');
+      container.innerHTML = `
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[11px] text-amber-400 font-bold">Modul Aktif (${mod.id}/10)</div>
+          <div class="font-display font-bold text-white text-sm mt-0.5">${mod.title}</div>
+        </div>
+        <div class="space-y-2.5">
+          <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Poin Kunci Penyampaian:</div>
+          ${mod.notes.map((n, idx) => `
+            <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 font-bold flex items-center justify-center shrink-0 text-[11px]">${idx + 1}</span>
+              <p class="text-slate-200">${n}</p>
+            </div>
+          `).join('')}
+        </div>
+        <div class="p-3.5 rounded-xl bg-emerald-950/50 border border-emerald-800/50 space-y-1 text-[11px]">
+          <div class="font-bold text-emerald-300">Referensi Cepat Angka Kunci:</div>
+          <div>• Total Pagu BOS: <strong class="text-white">Rp242.720.000</strong></div>
+          <div>• Teridentifikasi (8 SNP / 11 Komp): <strong class="text-emerald-300">Rp176.380.000 (72,67%)</strong></div>
+          <div>• Sisa Belum Teridentifikasi: <strong class="text-amber-300">Rp66.340.000 (27,33%)</strong></div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 5. CHARTS & TABLES RENDERING
+    // =========================================================================
+    function renderDashboardMiniCharts() {
+      // Mini Chart A: 8 SNP (Ranked)
+      const snpSorted = [...STANDAR_SNP].sort((a, b) => b.anggaran - a.anggaran);
+      const maxSnp = snpSorted[0].anggaran;
+      document.getElementById('dash-chart-snp').innerHTML = snpSorted.map(item => {
+        const widthPct = (item.anggaran / maxSnp) * 100;
+        const isTop = item.no === 5;
+        return `
+          <div class="group cursor-pointer"
+               onmouseenter="showTooltip(event, '${item.nama}', ${item.anggaran})"
+               onmousemove="moveTooltip(event)"
+               onmouseleave="hideTooltip()">
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-medium text-slate-700 truncate pr-2 ${isTop ? 'font-bold text-indigo-900' : ''}">${item.nama}</span>
+              <span class="font-bold text-slate-900 shrink-0">${formatRp(item.anggaran)} <span class="text-slate-400 font-normal">(${pctOfPagu(item.anggaran)})</span></span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+              <div class="bar-fill h-full rounded-full ${isTop ? 'bg-indigo-600' : 'bg-slate-600 group-hover:bg-indigo-500'}" style="width: ${widthPct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Mini Chart B: 11 Komponen BOS (Ranked)
+      const kompSorted = [...KOMPONEN_BOS].sort((a, b) => b.anggaran - a.anggaran);
+      const maxKomp = kompSorted[0].anggaran;
+      document.getElementById('dash-chart-komp').innerHTML = kompSorted.map(item => {
+        const widthPct = item.anggaran > 0 ? (item.anggaran / maxKomp) * 100 : 0;
+        const isTop3 = [9, 2, 10].includes(item.no);
+        return `
+          <div class="group cursor-pointer"
+               onmouseenter="showTooltip(event, '${item.no}. ${item.nama}', ${item.anggaran}, '${item.statusText || ''}')"
+               onmousemove="moveTooltip(event)"
+               onmouseleave="hideTooltip()">
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-medium text-slate-700 truncate pr-2 ${isTop3 ? 'font-bold text-emerald-900' : ''}">${item.no}. ${item.nama}</span>
+              <span class="font-bold shrink-0 ${item.status === 'unfilled' ? 'text-amber-600 italic font-semibold' : 'text-slate-900'}">
+                ${item.status === 'unfilled' ? 'Belum diisi' : `${formatRp(item.anggaran)} <span class="text-slate-400 font-normal">(${pctOfPagu(item.anggaran)})</span>`}
+              </span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+              ${item.status === 'unfilled'
+                ? `<div class="h-full bg-amber-200/70 w-full border border-dashed border-amber-400"></div>`
+                : `<div class="bar-fill h-full rounded-full ${isTop3 ? 'bg-emerald-600' : 'bg-slate-600 group-hover:bg-emerald-500'}" style="width: ${widthPct}%"></div>`
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setKompSort(mode) {
+      kompSortMode = mode;
+      document.getElementById('komp-sort-ranked').className = mode === 'ranked'
+        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white transition'
+        : 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+      document.getElementById('komp-sort-seq').className = mode === 'seq'
+        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white transition'
+        : 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+      renderKompChart();
+    }
+
+    function renderKompChart() {
+      const list = kompSortMode === 'ranked'
+        ? [...KOMPONEN_BOS].sort((a, b) => b.anggaran - a.anggaran)
+        : [...KOMPONEN_BOS].sort((a, b) => a.no - b.no);
+      const maxVal = 38780000;
+
+      document.getElementById('komp-interactive-chart').innerHTML = list.map((item, idx) => {
+        const widthPct = item.anggaran > 0 ? (item.anggaran / maxVal) * 100 : 0;
+        const isTop3 = [9, 2, 10].includes(item.no);
+        return `
+          <div class="p-3 rounded-xl border ${isTop3 ? 'border-emerald-200 bg-emerald-50/40' : 'border-slate-100 bg-slate-50/50'} hover:border-slate-300 transition cursor-pointer"
+               onmouseenter="showTooltip(event, 'Komp. ${item.no}: ${item.nama}', ${item.anggaran}, '${item.statusText || ''}')"
+               onmousemove="moveTooltip(event)"
+               onmouseleave="hideTooltip()">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs mb-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg ${isTop3 ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-700'} font-bold flex items-center justify-center text-[11px] shrink-0">
+                  ${kompSortMode === 'ranked' ? '#' + (idx + 1) : item.no}
+                </span>
+                <span class="font-bold text-slate-900">${item.no}. ${item.nama}</span>
+                ${item.highlight ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">${item.highlight}</span>` : ''}
+              </div>
+              <div class="text-right">
+                ${item.status === 'unfilled'
+                  ? `<span class="font-semibold text-amber-700 italic">Belum diisi — menunggu verifikasi dan penetapan alokasi.</span>`
+                  : `<span class="font-display font-extrabold text-slate-900">${formatRp(item.anggaran)}</span> <span class="text-slate-500">(${pctOfPagu(item.anggaran)} Pagu)</span>`
+                }
+              </div>
+            </div>
+            <div class="w-full bg-slate-200/80 rounded-full h-3 overflow-hidden">
+              ${item.status === 'unfilled'
+                ? `<div class="h-full w-full bg-amber-100 border border-dashed border-amber-400"></div>`
+                : `<div class="bar-fill h-full rounded-full ${isTop3 ? 'bg-gradient-to-r from-emerald-600 to-teal-500' : 'bg-indigo-600'}" style="width: ${widthPct}%"></div>`
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderKompTable() {
+      const q = (document.getElementById('komp-search')?.value || '').toLowerCase();
+      const filtered = KOMPONEN_BOS.filter(k =>
+        k.nama.toLowerCase().includes(q) || k.strategi.toLowerCase().includes(q)
+      );
+
+      document.getElementById('komp-table-body').innerHTML = filtered.map(k => {
+        const isTop3 = [9, 2, 10].includes(k.no);
+        return `
+          <tr class="${isTop3 ? 'bg-emerald-50/35' : k.status === 'unfilled' ? 'bg-amber-50/40' : ''}">
+            <td class="py-3.5 px-3 font-bold text-slate-700">${k.no}</td>
+            <td class="py-3.5 px-4">
+              <div class="font-bold text-slate-900">${k.nama}</div>
+              ${k.highlight ? `<span class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">${k.highlight}</span>` : ''}
+            </td>
+            <td class="py-3.5 px-4 text-right font-bold ${k.status === 'unfilled' ? 'text-amber-700 italic text-xs' : 'text-slate-900'}">
+              ${k.status === 'unfilled' ? 'Belum diisi' : formatRp(k.anggaran)}
+            </td>
+            <td class="py-3.5 px-3 text-right font-medium text-slate-700">${k.status === 'unfilled' ? '—' : pctOfPagu(k.anggaran)}</td>
+            <td class="py-3.5 px-3 text-right font-medium text-slate-600">${k.status === 'unfilled' ? '—' : pctOfIdentified(k.anggaran)}</td>
+            <td class="py-3.5 px-4 text-xs text-slate-600 leading-relaxed">${k.strategi}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function setSnpSort(mode) {
+      snpSortMode = mode;
+      document.getElementById('snp-sort-ranked').className = mode === 'ranked'
+        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white transition'
+        : 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+      document.getElementById('snp-sort-seq').className = mode === 'seq'
+        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy-900 text-white transition'
+        : 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+      renderSnpChart();
+    }
+
+    function renderSnpChart() {
+      const list = snpSortMode === 'ranked'
+        ? [...STANDAR_SNP].sort((a, b) => b.anggaran - a.anggaran)
+        : [...STANDAR_SNP].sort((a, b) => a.no - b.no);
+      const maxVal = 79060000;
+
+      document.getElementById('snp-interactive-chart').innerHTML = list.map((item, idx) => {
+        const widthPct = (item.anggaran / maxVal) * 100;
+        const isTop = item.no === 5;
+        return `
+          <div class="p-3.5 rounded-xl border ${isTop ? 'border-indigo-300 bg-indigo-50/50' : 'border-slate-100 bg-slate-50/60'} hover:border-slate-300 transition cursor-pointer"
+               onmouseenter="showTooltip(event, '${item.nama}', ${item.anggaran})"
+               onmousemove="moveTooltip(event)"
+               onmouseleave="hideTooltip()">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs mb-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg ${isTop ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-700'} font-bold flex items-center justify-center text-[11px] shrink-0">
+                  ${snpSortMode === 'ranked' ? '#' + (idx + 1) : item.no}
+                </span>
+                <span class="font-bold text-slate-900">${item.nama}</span>
+                ${isTop ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-navy-950">ALOKASI TERBESAR</span>` : ''}
+              </div>
+              <div class="text-right">
+                <span class="font-display font-extrabold text-slate-900">${formatRp(item.anggaran)}</span>
+                <span class="text-slate-500 ml-1">(${pctOfPagu(item.anggaran)} Pagu • ${pctOfIdentified(item.anggaran)} Terident.)</span>
+              </div>
+            </div>
+            <div class="w-full bg-slate-200/80 rounded-full h-3.5 overflow-hidden">
+              <div class="bar-fill h-full rounded-full ${isTop ? 'bg-gradient-to-r from-indigo-700 to-blue-500' : 'bg-slate-700'}" style="width: ${widthPct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderSnpTable() {
+      document.getElementById('snp-table-body').innerHTML = STANDAR_SNP.map(s => {
+        const isTop = s.no === 5;
+        return `
+          <tr class="${isTop ? 'bg-indigo-50/50' : ''}">
+            <td class="py-3.5 px-3 font-bold text-slate-700">${s.no}</td>
+            <td class="py-3.5 px-4">
+              <div class="font-bold text-slate-900">${s.nama}</div>
+              ${isTop ? `<span class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-300 text-navy-950">ALOKASI TERBESAR</span>` : ''}
+            </td>
+            <td class="py-3.5 px-4 text-right font-bold text-slate-900">${formatRp(s.anggaran)}</td>
+            <td class="py-3.5 px-3 text-right font-semibold text-indigo-700">${pctOfPagu(s.anggaran)}</td>
+            <td class="py-3.5 px-3 text-right font-medium text-slate-600">${pctOfIdentified(s.anggaran)}</td>
+            <td class="py-3.5 px-4 text-xs text-slate-600 leading-relaxed">${s.analisis}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Keyboard Arrow Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight') navigateSlide(1);
+      if (e.key === 'ArrowLeft') navigateSlide(-1);
+    });
+
+    // Initialize Application
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSidebar();
+      renderPresenterNotes();
+      renderDashboardMiniCharts();
+      renderKompChart();
+      renderKompTable();
+      renderSnpChart();
+      renderSnpTable();
+    });
+  </script>
+</body>
+</html>
